@@ -68,7 +68,9 @@ def sigmoid_function():
 def relu_function():
     x = np.arange(-10, 10, 0.1)
     y = np.where(x < 0, 0, x)
+    y1 = np.where(x<0, -0.1, x)
     plt.plot(x, y)
+    plt.plot(x,y1)
     plt.show()
 
 if __name__ == '__main__':
