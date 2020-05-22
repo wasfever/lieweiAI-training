@@ -6,8 +6,9 @@
 @Software: PyCharm
 '''
 import torch
-
+import numpy as np
 x = torch.tensor([3.0], requires_grad=True)
 y = x ** 3
 y.backward()  #对y进行求导
 print(x.grad) #打印出X的梯度
+

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 '''
-@Time    : 2020/5/21 23:47
+@Time    : 2020/5/22 23:47
 @Author  : s.xiao
-@FileName: test03.py
+@FileName: test04.py
 @Software: PyCharm
-使用梯度下降法完成对一堆点的直线y=wx+b拟合
+1.使用梯度下降法完成对一堆点的直线y=wx+b拟合
+2.在原有demo基础上加入了动态画图
 '''
 
 import random
@@ -16,6 +17,7 @@ _y = [2 * e + 3 + random.random() for e in _x]
 # 随机生成w和b，最终w逼近3，b逼近4
 w = random.random()
 b = random.random()
+plt.ion()  # 开启画图
 
 for i in range(40):
     for x, y in zip(_x, _y):  # 通过zip函数同时从_x _y的list中取值
@@ -31,7 +33,13 @@ for i in range(40):
         b = b + l * db
         print("w=", w, "; b=", b, "loss=", loss)
 
-plt.plot(_x, _y, ".")  # 画出数据集_x _y
-v = [w * e + b for e in _x]
-plt.plot(_x, v)
+        # 动态画图过程，如果过于频繁可以放到轮次循环中
+        plt.cla()  # 清空画板
+        plt.title(loss)  # 加入标题，展示精度变化
+        plt.plot(_x, _y, ".")  # 画出数据集_x _y
+        v = [w * e + b for e in _x]
+        plt.plot(_x, v)
+        plt.pause(0.01)  # 睡眠0.01秒
+
+plt.ioff()  # 关闭画图
 plt.show()
