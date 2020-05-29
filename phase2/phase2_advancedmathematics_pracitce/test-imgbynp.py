@@ -19,3 +19,7 @@ plt.show()
 img_data = np.array(img)
 print(img_data)
 print(img_data.shape)  # 打印该图像数据的形象
+img_data = img_data.reshape(296, 474, 3) #矩阵numpy维度变换
+img_data = img_data.transpose(1, 0, 2)  #矩阵numpy换轴操作
+img = Image.fromarray(img_data)
+img.show()
